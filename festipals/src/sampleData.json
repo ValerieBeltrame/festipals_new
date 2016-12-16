@@ -1,0 +1,52 @@
+{
+  "acts": [
+    {
+      "_id": "abcdefgh",
+      "title": "Slayer",
+      "starts": {"d": "01-06-2017", "t": "13:45"},
+      "ends": {"d": "01-06-2017", "t": "14:30"},
+      "stage": 1,
+      "description": "Very long description of the band",
+      "country": "US",
+      "img": "path/to/img.jpg"
+    },
+    {
+      "_id": "ijklmnop",
+      "title": "Rammstein",
+      "starts": {"d": "01-06-2017", "t": "14:30:00"},
+      "ends": {"d": "01-06-2017", "t": "15:30:00"},
+      "stage": 2,
+      "description": "Very long description of the band",
+      "country": "DE",
+      "img": "path/to/img.jpg"
+    },
+    {
+      "_id": "asdf",
+      "title": "Sepultura",
+      "starts": {"d": "01-06-2017", "t": "13:45:00"},
+      "ends": {"d": "01-06-2017", "t": "14:30:00"},
+      "stage": 3,
+      "description": "Very long description of the band",
+      "country": "US",
+      "img": "path/to/img.jpg"
+    },
+    {
+      "_id": "soad",
+      "title": "System of a Down",
+      "starts": {"d": "01-06-2017", "t": "14:30:00"},
+      "ends": {"d": "01-06-2017", "t": "15:30:00"},
+      "stage": 4,
+      "description": "Very long description of the band",
+      "country": "DE",
+      "img": "path/to/img.jpg"
+    }
+  ],
+  "user": {
+    "_id": "abc",
+    "first_name": "Arya",
+    "last_name": "Stark",
+    "e_mail": "noone@gmail.com",
+    "pals": ["def", "ghi"],
+    "acts": ["ijklmnop", "asdf"]
+  }
+}

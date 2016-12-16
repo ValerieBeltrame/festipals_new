@@ -1,0 +1,36 @@
+{
+  "pals": [
+    {
+      "_id": "def",
+      "first_name": "Sansa",
+      "last_name": "Stark",
+      "e_mail": "test1@email.com",
+      "pals": ["abc", "ghi"],
+      "acts": ["ijklmnop", "asdf"]
+    },
+    {
+      "_id": "ghi",
+      "first_name": "Sandor the hound",
+      "last_name": "Clegane",
+      "e_mail": "test2@email.com",
+      "pals": ["abc", "def"],
+      "acts": ["ijklmnop", "asdf"]
+    },
+    {
+      "_id": "abc",
+      "first_name": "Arya",
+      "last_name": "Stark",
+      "e_mail": "noone@gmail.com",
+      "pals": ["def", "ghi"],
+      "acts": ["ijklmnop", "asdf"]
+    }
+  ],
+  "user": {
+    "_id": "abc",
+    "first_name": "Arya",
+    "last_name": "Stark",
+    "e_mail": "noone@gmail.com",
+    "pals": ["def", "ghi"],
+    "acts": ["ijklmnop", "asdf"]
+  }
+}
