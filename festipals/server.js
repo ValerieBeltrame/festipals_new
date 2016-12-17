@@ -6,6 +6,10 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var Act = require('./model/act');
 var Pal = require('./model/pal');
+
+// for hashing the password
+var bcrypt = require('bcryptjs');
+
 //and create our instances
 var app = express();
 var router = express.Router();
@@ -66,6 +70,90 @@ router.route('/acts')
        res.json({ message: 'Act successfully added!' });
      });
  });
+
+
+
+//=====Pals======
+// get all pals from database as JSON
+router.route('/pals')
+ //retrieve all pals from the database
+ .get(function(req, res) {
+ //looks at our acts Schema
+   Pal.find(function(err, pals) {
+     if (err)
+      res.send(err);
+      //responds with a json object of our database pals.
+      res.json(pals)
+   });
+ })
+
+ // add new pal to database
+ .post(function(req, res) {
+ var pal = new Pal();
+   //body parser lets us use the req.body
+   pal.first_name = req.body.first_name;
+   pal.last_name = req.body.last_name;
+   pal.e_mail = req.body.e_mail;
+
+   // hashing the password
+   var salt = bcrypt.genSaltSync(10);
+   var hash = bcrypt.hashSync(req.body.password, salt);
+   pal.password = hash;
+
+   pal.save(function(err) {
+     if (err)
+       res.send(err);
+       res.json('New pal was saved!');
+     });
+ });
+
+// find a specific pal
+router.route('/pals/:_id')
+  .get(function(req, res) {
+  //looks at our pals Schema
+    Pal.find({ _id: req.params._id }, function(err, pals) {
+      if (err)
+      res.send(err);
+      //responds with a json object of our database pals.
+      res.json(pals);
+    });
+  })
+
+// update a specific pals
+  .put(function(req, res) {
+  //looks at our pals Schema
+    Pal.findById({ _id: req.params._id }, function(err, pal) {
+      if (err)
+      res.send(err);
+      //responds with a json object of our database pals.
+      (req.body.first_name) ? pal.first_name = req.body.first_name : null;
+      (req.body.last_name) ? pal.last_name = req.body.last_name : null;
+
+      //save pal
+       pal.save(function(err) {
+       if (err)
+         res.send(err);
+         res.json({ message: 'Pal has been updated' });
+       });
+    });
+  })
+
+  //Delete a pal
+  .delete(function(req, res) {
+  //looks at our acts Schema
+    Pal.remove({ _id: req.params._id }, function(err, comment) {
+      if (err)
+      res.send(err);
+      //responds with a json object of our database pals.
+      res.json({ message: 'Pal successfully deleted!' });
+    });
+  })
+
+
+
+
+
+
 
 //Use our router configuration when we call /api
 app.use('/api', router);
