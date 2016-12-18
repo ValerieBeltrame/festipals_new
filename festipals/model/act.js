@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var Pal = require('./pal');
 
 var actsSchema = new Schema({
   title: { type: 'String', required: true },
