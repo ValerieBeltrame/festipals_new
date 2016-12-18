@@ -13,11 +13,4 @@ var PalsSchema = new Schema({
   pendingPalRequests: { type: Array, default: [] },
 });
 
-PalsSchema.methods.comparePassword = function(candidatePassword, cb) {
-    bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
-        if (err) return cb(err);
-        cb(null, isMatch);
-    });
-};
-
 module.exports = mongoose.model('Pal', PalsSchema);
