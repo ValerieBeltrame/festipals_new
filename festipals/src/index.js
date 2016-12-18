@@ -15,22 +15,27 @@ import SchedulePage from './components/SchedulePage';
 import SignUpPage from './components/SignUpPage';
 import LogInPage from './components/LogInPage';
 
-// var LayoutWrapper = React.createClass({
-//   render: function () {
-//     return (
-//         <Layout url='http://localhost:3001/api/comments' pollInterval={2000} />
-//     );
-//   }
-// });
+function loggedIn() {
+  //get user session to see if someone is logged in
+  return false;
+}
+
+function requireAuth(nextState, replace) {
+  if (!loggedIn()) {
+    replace({
+      pathname: '/home'
+    })
+  }
+}
 
 ReactDOM.render(
   <Router history={browserHistory}>
-    <Route path='/' component={Layout}>
-      <IndexRoute component={SchedulePage}></IndexRoute>
+    <Route path='/' component={Layout} loggedIn={loggedIn()}>
+      <IndexRoute component={SchedulePage} onEnter={requireAuth}></IndexRoute>
       <Route path="acts" component={ActsPage} url='http://localhost:3001/api/acts' pollInterval={4000}></Route>
-      <Route path="home" component={HomePage}></Route>
-      <Route path="pals" component={PalsPage}></Route>
-      <Route path="profile" component={ProfilePage}></Route>
+      <Route path="home" component={HomePage} loggedIn={loggedIn()}></Route>
+      <Route path="pals" component={PalsPage} onEnter={requireAuth}></Route>
+      <Route path="profile" component={ProfilePage} onEnter={requireAuth}></Route>
       <Route path="signUp" component={SignUpPage}></Route>
       <Route path="logIn" component={LogInPage}></Route>
     </Route>

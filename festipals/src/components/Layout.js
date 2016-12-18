@@ -3,9 +3,10 @@ import Navbar from './Navbar.js';
 
 export default class Layout extends Component {
   render() {
+    console.log(this.props.route.loggedIn)
     return (
       <div className="layout">
-        <Navbar />
+        <Navbar loggedIn={this.props.route.loggedIn}/>
         {/* this.props.children contains the page that has to be rendered for the routes*/}
         {this.props.children}
       </div>
