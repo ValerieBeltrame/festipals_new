@@ -28,6 +28,7 @@ export default class ProfilePage extends Component {
   }
 
   render() {
+
     var attendingPals = ['pal1', 'pal2']; // TO DO: add logic for attending pals here; look through the users pals and select the ones that have this acts {id} in their list of acts.
     const pendingPalRequests = [{ "_id": "def",
                                   "first_name": "Sansa",
