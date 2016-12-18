@@ -106,7 +106,7 @@ router.route('/pals/:_id/profile')
   //looks at our pals Schema
 
   Pal.findOne({ _id: req.params._id})
-  .populate('acts')
+  .populate('acts').populate('pals')
   .exec(function(err, pal) {
     if (err)
     res.send(err);
