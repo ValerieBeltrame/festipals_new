@@ -5,8 +5,6 @@ import { Link } from 'react-router';
 
 export default class HomePage extends Component {
   render() {
-    var loggedIn = false;
-
     return (
         <div>
             <div className="container-fluid">
@@ -24,7 +22,7 @@ export default class HomePage extends Component {
             </div>
 
             <div className="container">
-              { loggedIn
+              { this.props.route.loggedIn
                ? <div className="row">
                         <div className="col-xs-12 col-sm-6 col-md-offset-3 text-center loggedIndiv">
                               <h4>Logged in as UserName</h4>
