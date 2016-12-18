@@ -16,7 +16,7 @@ export default class Acts extends Component {
           <div className="panel panel-default">
             <div className="panel-body">
               <div className="col-xs-3 startingTime">
-                {startTime}
+                {date} <br /> <strong>{startTime}</strong>
               </div>
               <div className="col-xs-6">
                 <h3>{name}</h3>
