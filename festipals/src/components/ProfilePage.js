@@ -24,7 +24,7 @@ export default class ProfilePage extends Component {
 
   componentDidMount() {
     this.loadProfileFromServer();
-    setInterval(this.loadActsFromServer, this.props.route.pollInterval);
+    setInterval(this.loadProfileFromServer, this.props.route.pollInterval);
   }
 
   render() {

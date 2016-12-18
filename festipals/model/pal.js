@@ -9,7 +9,7 @@ var PalsSchema = new Schema({
   password: { type: 'String', required: true },
   pals: [{ type: Schema.Types.ObjectId, ref: 'Pal' }],
   acts: [{ type: Schema.Types.ObjectId, ref: 'Act' }],
-  pendingActInvites: [{invitingPal: [{ type: Schema.Types.ObjectId, ref: 'Pal'}], actID: [{type: Schema.Types.ObjectId, ref: 'Act'}] }],
+  pendingActInvites: [{ invitingPal: { type: Schema.Types.ObjectId, ref: 'Pal'}, actID: {type: Schema.Types.ObjectId, ref: 'Act'} }],
   pendingPalRequests: [{type: Schema.Types.ObjectId, ref: 'Pal'}]
 });
 

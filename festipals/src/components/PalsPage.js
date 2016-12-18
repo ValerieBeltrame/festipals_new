@@ -3,9 +3,11 @@ import '../css/PalsPage.css';
 import Pals from './Pals.js';
 import PageHeader from './PageHeader.js';
 import SamplePals from './../samplePals.json';
+import axios from 'axios';
 
 export default class PalsPage extends Component {
   render() {
+
     return (
       <div>
         <PageHeader icon="fa fa-users" title="Pals" description="(More information about your pals)"/>
@@ -16,7 +18,7 @@ export default class PalsPage extends Component {
             </div>
             <div className="col-xs-12">
               {/*} looping through all the pals in the sample data file array to display the pals */}
-              {SamplePals.pals.map(function (pal) { return <Pals
+
                                                               key={pal._id}
                                                               id={pal._id}
                                                               firstName={pal.first_name}
