@@ -2,29 +2,9 @@ import React, { Component } from 'react';
 import '../css/PalsPage.css';
 import Pals from './Pals.js';
 import PageHeader from './PageHeader.js';
-//import SamplePals from './../samplePals.json';
-import axios from 'axios';
+import SamplePals from './../samplePals.json';
 
 export default class PalsPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { data: [] };
-    this.loadPalsFromServer = this.loadPalsFromServer.bind(this);
-  }
-  
-  loadPalsFromServer() {
-    axios.get(this.props.route.url)
-    .then(res => {
-      console.log(res.data);
-      this.setState({ data: res.data });
-    })
-  }
-
-  componentDidMount() {
-    this.loadActsFromServer();
-    setInterval(this.loadActsFromServer, this.props.route.pollInterval);
-  }
-
   render() {
     return (
       <div>
@@ -36,7 +16,7 @@ export default class PalsPage extends Component {
             </div>
             <div className="col-xs-12">
               {/*} looping through all the pals in the sample data file array to display the pals */}
-              {this.state.data.map(function (pal) { return <Pals
+              {SamplePals.pals.map(function (pal) { return <Pals
                                                               key={pal._id}
                                                               id={pal._id}
                                                               firstName={pal.first_name}

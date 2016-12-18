@@ -77,7 +77,7 @@ export default class ProfilePage extends Component {
           <hr />
           <div className="row">
             <div className="col-xs-12">
-              <h2>{this.state.data.pendingPalRequests.toString} Pending requests <span className="badge">{pendingPalRequests.length + pendingActInvites.length}</span></h2>
+              <h2>Pending requests <span className="badge">{pendingPalRequests.length + pendingActInvites.length}</span></h2>
             </div>
             <div className="col-xs-12">
               <h3><i className="fa fa-users"></i> Pal requests</h3>
