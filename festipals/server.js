@@ -104,13 +104,16 @@ router.route('/pals')
 router.route('/pals/:_id/profile')
   .get(function(req, res) {
   //looks at our pals Schema
-    Pal.findOne({ _id: req.params._id }, function(err, pal) {
-      if (err)
-      res.send(err);
-      //responds with a json object of our database pals.
-      res.json(pal);
-    });
-  })
+
+  Pal.findOne({ _id: req.params._id})
+  .populate('acts')
+  .exec(function(err, pal) {
+    if (err)
+    res.send(err);
+    //responds with a json object of our database pals.
+    res.json(pal);
+  });
+})
 
   // update a specific pals
     .put(function(req, res) {
@@ -166,7 +169,7 @@ router.route('/pals/:_id/acts/:act')
     });
   });
 
-  
+
 //Use our router configuration when we call /api
 app.use('/api', router);
 //starts the server and listens for requests
