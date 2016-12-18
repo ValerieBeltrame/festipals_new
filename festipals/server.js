@@ -101,7 +101,7 @@ router.route('/pals')
  });
 
  // get a specific pal's profile
-router.route('/pals/:_id/profile')
+router.route('/pals/:_id/details')
   .get(function(req, res) {
   //looks at our pals Schema
 
