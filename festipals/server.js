@@ -10,6 +10,9 @@ var Pal = require('./model/pal');
 // for hashing the password
 var bcrypt = require('bcryptjs');
 
+// controllers
+var actController = require('./controllers/ActController');
+
 //and create our instances
 var app = express();
 var router = express.Router();
@@ -34,6 +37,7 @@ app.use(function(req, res, next) {
  res.setHeader('Cache-Control', 'no-cache');
  next();
 });
+
 //now we can set the route path & initialize the API
 router.get('/', function(req, res) {
  res.json({ message: 'API Initialized!'});
@@ -51,8 +55,7 @@ router.route('/acts')
      res.json(acts)
    });
  })
-
- // post new comment to the database
+ // post new act to the database
  .post(function(req, res) {
  var act = new Act();
    //body parser lets us use the req.body
@@ -74,6 +77,23 @@ router.route('/acts')
 
 
 //=====Pals======
+router.route('/pals/login/:palid/:palpassword')
+.get(function(req, res) {
+//looks at our acts Schema
+  var userId = req.params.palid;
+  var inputPassword = req.params.palpassword;
+
+  Pal.findOne({ _id: req.params.palid }, function(err, pal) {
+    if (err)
+      res.send(err);
+    //responds with a json object of our database pals.
+    Pal.comparePassword('lol', function(err, isMatch) {
+        if (err) throw err;
+        console.log('lol:', isMatch); // -&gt; Password123: true
+    });
+  });
+})
+
 // get all pals from database as JSON
 router.route('/pals')
  //retrieve all pals from the database
@@ -149,9 +169,30 @@ router.route('/pals/:_id')
     });
   })
 
+  // add an act to a pal
+  router.route('/pals/:_id/acts')
+    .get(function(req, res) {
+    //looks at our pals Schema
 
+    Pal.find({ _id: req.params._id }, function(err, pals) {
+      if (err)
+      res.send(err);
+      //responds with a json object of our database pals.
+      res.json(pals);
+    });
+      // var foundAct = Act.find({ _id: req.params.actid }, function(err, pals) {
+      //   if (err)
+      //   res.send(err);
+      //   //responds with a json object of our database pals.
+      //   res.json(pals);
+      // });
+      //
+      // if(foundAct != null) {
+      //   Pal.update()({palid: req.params.palid}, {$push: {"act": foundAct}});
+      //   res.json({ message: 'act was added to your user'});
+      // }
 
-
+    });
 
 
 

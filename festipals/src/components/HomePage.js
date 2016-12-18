@@ -8,13 +8,13 @@ export default class HomePage extends Component {
     var loggedIn = false;
 
     return (
-        <div>
-            <div className="container-fluid">
-                  <div className="page-header">
-                    <div className="container text-center">
-                              <div className="col-xs-12 col-sm-6 col-sm-offset-3">
-                                  <img className="img-responsive roskildeLogo" alt="roskilde-festival-logo" src={logo} />
-                              </div>
+      <div>
+         <div className="container-fluid">
+            <div className="page-header">
+              <div className="container text-center">
+                <div className="col-xs-12 col-sm-6 col-sm-offset-3">
+                  <img className="img-responsive roskildeLogo" alt="roskilde-festival-logo" src={logo} />
+                </div>
 
                                 <div className="col-xs-12 col-sm-6 col-sm-offset-3">
                                     <h1>FestiPals</h1>
