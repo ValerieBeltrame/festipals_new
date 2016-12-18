@@ -6,7 +6,27 @@ import SamplePals from './../samplePals.json';
 import axios from 'axios';
 
 export default class PalsPage extends Component {
+  constructor() {
+        super();
+        this.loadProfileFromServer = this.loadProfileFromServer.bind(this);
+    }
+
+    loadProfileFromServer() {
+      axios.get(this.props.route.url)
+      .then(res => {
+        this.setState({ data: res.data });
+      })
+    }
+
+    componentDidMount() {
+      this.loadProfileFromServer();
+      setInterval(this.loadProfileFromServer, this.props.route.pollInterval);
+   }
+
   render() {
+    console.log(this.state.data);
+    const userPals = this.state.data.pals;
+
 
     return (
       <div>
@@ -18,13 +38,14 @@ export default class PalsPage extends Component {
             </div>
             <div className="col-xs-12">
               {/*} looping through all the pals in the sample data file array to display the pals */}
-
+              {userPals.map(function (pal) { return <Pals
                                                               key={pal._id}
                                                               id={pal._id}
                                                               firstName={pal.first_name}
                                                               lastName={pal.last_name}
                                                               email={pal.e_mail}
                                                             /> }) }
+
             </div>
           </div>
         </div>
