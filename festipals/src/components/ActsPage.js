@@ -15,7 +15,6 @@ export default class ActsPage extends Component {
   loadActsFromServer() {
     axios.get(this.props.route.url)
     .then(res => {
-      console.log(res.data);
       this.setState({ data: res.data });
     })
   }
@@ -41,6 +40,9 @@ export default class ActsPage extends Component {
                                                         name={act.title}
                                                         country={act.country}
                                                         description={act.description}
+                                                        startTime={act.starts.time}
+                                                        endTime={act.ends.time}
+                                                        date={act.starts.date}
                                                         attendingPals={attendingPals}
                                                       /> }) }
         </div>

@@ -17,7 +17,7 @@ import LogInPage from './components/LogInPage';
 
 function loggedIn() {
   //get user session to see if someone is logged in
-  return false;
+  return true;
 }
 
 function requireAuth(nextState, replace) {
@@ -32,7 +32,7 @@ ReactDOM.render(
   <Router history={browserHistory}>
     <Route path='/' component={Layout} loggedIn={loggedIn()}>
       <IndexRoute component={SchedulePage} onEnter={requireAuth}></IndexRoute>
-      <Route path="acts" component={ActsPage} url='http://localhost:3001/api/acts' pollInterval={4000}></Route>
+      <Route path="acts" component={ActsPage} onEnter={requireAuth} url='http://localhost:3001/api/acts' pollInterval={4000}></Route>
       <Route path="home" component={HomePage} loggedIn={loggedIn()}></Route>
       <Route path="pals" component={PalsPage} onEnter={requireAuth}></Route>
       <Route path="profile" component={ProfilePage} onEnter={requireAuth}></Route>

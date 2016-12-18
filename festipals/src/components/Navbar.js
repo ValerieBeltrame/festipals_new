@@ -3,13 +3,7 @@ import { Link, IndexLink } from 'react-router';
 import '../css/Navbar.css';
 
 export default class Navbar extends Component {
-  constructor(props) {
-    super(props)
-    //get user session to see if someone is logged in
-    this.state = {loggedIn: props.loggedIn};
-  }
   render() {
-    console.log(this.props);
     return (
       <nav className="navbar navbar-inverse navbar-fixed-top" id="test" role="navigation">
         <div className="container">
@@ -22,7 +16,7 @@ export default class Navbar extends Component {
             </button>
             <Link className="navbar-brand" to="home">FestiPals</Link>
           </div>
-          {this.state.loggedIn
+          {this.props.loggedIn
             ? <div className="collapse navbar-collapse" id="collapsing-navbar">
               <ul className="nav navbar-nav">
                 <li><IndexLink to="/" activeClassName="active"><i className="fa fa-calendar"></i>My Schedule</IndexLink></li>
