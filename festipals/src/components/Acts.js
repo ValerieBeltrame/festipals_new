@@ -52,9 +52,11 @@ export default class Acts extends Component {
           <div className="col-xs-12 addActBtn">
             {alreadyAdded
               ? null
-              : <a type="button" className="btn btn-success col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6 btn-lg" onClick={this.handleAddClick.bind(this)}>
+              : (this.props.actRequest
+                ? null
+                : <a type="button" className="btn btn-success col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6 btn-lg" onClick={this.handleAddClick.bind(this)}>
                 <i className="fa fa-plus"></i> Add to my acts
-              </a>
+              </a>)
             }
           </div>
         </div>
