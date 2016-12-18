@@ -100,7 +100,19 @@ router.route('/pals')
    });
  });
 
- // get a specific pal's profile
+ router.route('/pals/:_id')
+   .get(function(req, res) {
+   //looks at our pals Schema
+
+   Pal.findOne({ _id: req.params._id})
+   .exec(function(err, pal) {
+     if (err)
+     res.send(err);
+     res.json(pal);
+   });
+ })
+
+ // get a specific pal's details
 router.route('/pals/:_id/details')
   .get(function(req, res) {
   //looks at our pals Schema
@@ -146,7 +158,7 @@ router.route('/pals/:_id/details')
   })
 
 
-router.route('/pals/:_id/acts/:act')
+router.route('/pals/:_id/acts/:act/add')
   .put(function(req, res) {
   //looks at our pals Schema
     Pal.findOne({ _id: req.params._id }, function(error, pal){
@@ -168,6 +180,32 @@ router.route('/pals/:_id/acts/:act')
 
     });
   });
+
+  router.route('/pals/:_id/acts/:act/delete')
+    .put(function(req, res) {
+    //looks at our pals Schema
+      Pal.findOne({ _id: req.params._id }, function(error, pal){
+        if(error){
+            res.json(error);
+        }
+        else if(pal == null){
+            res.json('no such user!')
+        }
+        else {
+          var index = pal.acts.indexOf(req.params.act);
+          if (index > -1) {
+           pal.acts.splice(index, 1);
+          }
+          pal.save( function(err, data){
+          if(err)
+            res.send(err);
+          else
+            res.json(data);
+          });
+        }
+
+      });
+    });
 
 
 //Use our router configuration when we call /api

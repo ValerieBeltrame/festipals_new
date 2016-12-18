@@ -9,3 +9,13 @@ a {
 .fa-trash {
   margin: 0;
 }
+
+.panel.panel-default {
+  margin-bottom: 5px;
+}
+
+.addActBtn {
+  margin-bottom: 20px;
+  padding-left:0;
+  padding-right:0;
+}

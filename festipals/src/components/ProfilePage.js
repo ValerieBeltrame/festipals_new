@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PageHeader from './PageHeader.js';
-import SampleData from './../sampleData.json';
 import Acts from './Acts.js';
 import Pals from './Pals.js';
 import '../css/ProfilePage.css';

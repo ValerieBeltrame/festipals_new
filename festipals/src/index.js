@@ -4,7 +4,8 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
-//import 'bootstrap/dist/js/bootstrap.min.js';
+import 'jquery/dist/jquery.min.js';
+import 'bootstrap/dist/js/bootstrap.min.js';
 import './css/index.css';
 
 import Layout from './components/Layout';
@@ -34,7 +35,7 @@ ReactDOM.render(
   <Router history={browserHistory}>
 
     <Route path='/' component={Layout} loggedIn={loggedIn()}>
-      <IndexRoute component={SchedulePage} onEnter={requireAuth}></IndexRoute>
+      <IndexRoute component={SchedulePage} onEnter={requireAuth} url='http://localhost:3001/api/pals/584552f3f36d282dbc878996/details' pollInterval={4000}></IndexRoute>
       <Route path="acts" component={ActsPage} onEnter={requireAuth} url='http://localhost:3001/api/acts' pollInterval={4000}></Route>
       <Route path="home" component={HomePage} loggedIn={loggedIn()}></Route>
       <Route path="pals" component={PalsPage} onEnter={requireAuth} url='http://localhost:3001/api/pals' pollInterval={4000}></Route>
