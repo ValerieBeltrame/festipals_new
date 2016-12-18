@@ -17,22 +17,28 @@ import SchedulePage from './components/SchedulePage';
 import SignUpPage from './components/SignUpPage';
 import LogInPage from './components/LogInPage';
 
-// var LayoutWrapper = React.createClass({
-//   render: function () {
-//     return (
-//         <Layout url='http://localhost:3001/api/comments' pollInterval={2000} />
-//     );
-//   }
-// });
+function loggedIn() {
+  //get user session to see if someone is logged in
+  return true;
+}
+
+function requireAuth(nextState, replace) {
+  if (!loggedIn()) {
+    replace({
+      pathname: '/home'
+    })
+  }
+}
 
 ReactDOM.render(
   <Router history={browserHistory}>
-    <Route path='/' component={Layout}>
-      <IndexRoute component={SchedulePage}></IndexRoute>
-      <Route path="acts" component={ActsPage} url='http://localhost:3001/api/acts' pollInterval={4000}></Route>
-      <Route path="home" component={HomePage} ></Route>
-      <Route path="pals" component={PalsPage} url='http://localhost:3001/api/pals' pollInterval={4000}></Route>
-      <Route path="profile" component={ProfilePage} url='http://localhost:3001/api/pals/584552f3f36d282dbc878996/profile' pollInterval={4000}></Route>
+
+    <Route path='/' component={Layout} loggedIn={loggedIn()}>
+      <IndexRoute component={SchedulePage} onEnter={requireAuth}></IndexRoute>
+      <Route path="acts" component={ActsPage} onEnter={requireAuth} url='http://localhost:3001/api/acts' pollInterval={4000}></Route>
+      <Route path="home" component={HomePage} loggedIn={loggedIn()}></Route>
+      <Route path="pals" component={PalsPage} onEnter={requireAuth} url='http://localhost:3001/api/pals' pollInterval={4000}></Route>
+      <Route path="profile" component={ProfilePage} onEnter={requireAuth}  url='http://localhost:3001/api/pals/584552f3f36d282dbc878996/profile' pollInterval={4000}></Route>
       <Route path="signUp" component={SignUpPage}></Route>
       <Route path="logIn" component={LogInPage}></Route>
     </Route>

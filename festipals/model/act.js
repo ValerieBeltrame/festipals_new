@@ -4,11 +4,11 @@ var Schema = mongoose.Schema;
 var actsSchema = new Schema({
   title: { type: 'String', required: true },
   starts: {
-    time: { type: 'Date' },
-    date: { type: 'Date' } },
+    time: { type: 'String' },
+    date: { type: 'String' } },
   ends: {
-    time: { type: 'Date'},
-    date: { type: 'Date'} },
+    time: { type: 'String'},
+    date: { type: 'String'} },
   description: { type: 'String', required: true },
   country: { type: 'String', required: true },
   stage: { type: 'String', required: true },
