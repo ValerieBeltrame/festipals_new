@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PageHeader from './PageHeader.js';
-import SampleData from './../sampleData.json';
 import Acts from './Acts.js';
 import Pals from './Pals.js';
 import '../css/ProfilePage.css';
@@ -122,6 +121,7 @@ export default class ProfilePage extends Component {
                                                                     country={act.country}
                                                                     date={act.starts.d}
                                                                     description={act.description}
+                                                                    actRequest={true}
                                                                     attendingPals={attendingPals}
                                                                   />
                                                                 <div className="col-xs-12 col-md-8 inviteButtons">

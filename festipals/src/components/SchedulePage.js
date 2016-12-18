@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import Acts from './Acts.js';
 import '../css/scheduleHeader.css';
-import SampleData from './../sampleData.json'
 import { Link } from 'react-router';
+import axios from 'axios';
 
 export default class SchedulePage extends Component {
     constructor() {
         super();
         var defaultDay = 'Monday, 1 June 2017';
-        this.state = {selectedDay: defaultDay};
+        this.state = {selectedDay: defaultDay, data: [], loggedInId: '584552f3f36d282dbc878996', data2: [] };
+        this.loadProfileFromServer = this.loadProfileFromServer.bind(this);
+        this.loadPalsActsFromServer = this.loadPalsActsFromServer.bind(this);
     }
 
     changeHandler(event) {
@@ -17,18 +19,30 @@ export default class SchedulePage extends Component {
         this.setState({selectedDay:newSelectedDay});
     }
 
-  render() {
-    const userActs = SampleData.user.acts;
-    var scheduledActs = [];
-    for(var i = 0; i < SampleData.acts.length; i++) {
-      if(userActs.indexOf(SampleData.acts[i]._id) < 0) {
-        scheduledActs.push(SampleData.acts[i]);
-      } else {
-
-      }
+    loadProfileFromServer() {
+      axios.get(this.props.route.url)
+      .then(res => {
+        this.setState({ data: res.data });
+      })
     }
-    var attendingPals = ['pal1', 'pal2']; // TO DO: add logic for attending pals here; look through the users pals and select the ones that have this acts {id} in their list of acts.
+    loadPalsActsFromServer() {
+      axios.get('http://localhost:3001/api/pals/' + this.state.loggedInId)
+      .then(res => {
+        this.setState({ data2: res.data });
+      })
+    }
 
+    componentDidMount() {
+      this.loadProfileFromServer();
+      setInterval(this.loadActsFromServer, this.props.route.pollInterval);
+      this.loadPalsActsFromServer();
+      setInterval(this.loadPalsActsFromServer, this.props.route.pollInterval);
+    }
+
+  render() {
+    const userActs = this.state.data.acts;
+    var attendingPals = ['pal1', 'pal2']; // TO DO: add logic for attending pals here; look through the users pals and select the ones that have this acts {id} in their list of acts.
+    const alreadyAdded = this.state.data2.acts;
     return (
       <div>
         <div className="container scheduleHeader">
@@ -54,18 +68,22 @@ export default class SchedulePage extends Component {
             <div className="row">
                     <div className="col-xs-12 col-sm-8">
         {/* looping through all the acts in the sample data file array to display the acts */}
-          {scheduledActs.map(function (act) { return <Acts
+          {userActs
+            ? userActs.map(function (act) { return <Acts
                                                         key={act._id}
                                                         id={act._id}
                                                         stage={act.stage}
                                                         name={act.title}
-                                                        startTime={act.starts.t}
-                                                        endTime={act.ends.t}
                                                         country={act.country}
-                                                        date={act.starts.d}
                                                         description={act.description}
+                                                        startTime={act.starts.time}
+                                                        endTime={act.ends.time}
+                                                        date={act.starts.date}
+                                                        addedActs={alreadyAdded}
                                                         attendingPals={attendingPals}
-                                                      /> }) }
+                                                      /> })
+            : <p>You don't have any acts added to your schedule yet.</p>
+          }
 
                    <Link to="acts"><button type="button" className="btn btn-primary btn-lg btn-block buttonAdd"> + Add acts</button></Link>
                     </div>
@@ -75,19 +93,6 @@ export default class SchedulePage extends Component {
                 <div className="col-xs-12 col-sm-8">
                     <h2>Your pals see also:</h2>
                         <p>{this.state.selectedDay}</p>
-                        {scheduledActs.map(function (act) { return <Acts
-                                                                      key={act._id}
-                                                                      id={act._id}
-                                                                      stage={act.stage}
-                                                                      name={act.title}
-                                                                      startTime={act.starts.t}
-                                                                      endTime={act.ends.t}
-                                                                      country={act.country}
-                                                                      date={act.starts.d}
-                                                                      description={act.description}
-                                                                      attendingPals={attendingPals}
-                                                                    /> }) }
-
                 </div>
             </div>
         </div>

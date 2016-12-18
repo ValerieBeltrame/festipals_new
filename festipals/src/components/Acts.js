@@ -1,19 +1,39 @@
 import React, { Component } from 'react';
-import SampleData from './../sampleData.json';
 import '../css/Acts.css';
 import Pals from './Pals.js';
+import axios from 'axios';
 
 export default class Acts extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {loggedInId: '584552f3f36d282dbc878996'};
+  }
+
+  handleDeleteClick(event) {
+    axios.put('http://localhost:3001/api/pals/' + this.state.loggedInId + '/acts/' + this.props.id + '/delete')
+    .then(res => {
+    })
+  }
+
+  handleAddClick(event) {
+    axios.put('http://localhost:3001/api/pals/' + this.state.loggedInId + '/acts/' + this.props.id + '/add')
+    .then(res => {
+    })
+  }
 
   render() {
-    const addedActs = SampleData.user.acts;
     const { name, startTime, id, stage, date, endTime, country, description, attendingPals } = this.props;
+    var addedActs = [];
+    console.log(this.props.addedActs);
+    if(this.props.addedActs) {
+      addedActs = this.props.addedActs;
+    }
     var alreadyAdded = addedActs.indexOf(id) > -1;
 
     return (
       <div>
-        <a data-toggle="modal" href={'#'+ id}>
-          <div className="panel panel-default">
+        <div className="row">
+          <a data-toggle="modal" href={'#'+ id} className="panel panel-default col-xs-12 actPanel">
             <div className="panel-body">
               <div className="col-xs-3 startingTime">
                 {date} <br /> <strong>{startTime}</strong>
@@ -27,16 +47,21 @@ export default class Acts extends Component {
                   <i className="fa fa-users"></i> {attendingPals.length}
                 </div>
               </div>
-              {alreadyAdded
-                ? <a type="button" className="btn btn-default col-xs-12">
-                  <i className="fa fa-plus"></i> Add to my acts
-                </a>
-                : null
-              }
             </div>
+          </a>
+          <div className="col-xs-12 addActBtn">
+            {alreadyAdded
+              ? null
+              : (this.props.actRequest
+                ? null
+                : <a type="button" className="btn btn-success col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6 btn-lg" onClick={this.handleAddClick.bind(this)}>
+                <i className="fa fa-plus"></i> Add to my acts
+              </a>)
+            }
           </div>
-        </a>
-        <div className="modal fade" id={id} tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        </div>
+
+        <div className="modal fade" id={id} tabIndex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div className="modal-dialog modal-lg" role="document">
             <div className="modal-content">
               <div className="modal-header">
@@ -50,15 +75,15 @@ export default class Acts extends Component {
                 <br />
                 <p>{description}</p>
                 {alreadyAdded
-                  ? <a type="button" className="btn btn-default col-xs-12 alreadyAddedBtn">
+                  ? <a type="button" className="btn btn-default col-xs-12 alreadyAddedBtn" onClick={this.handleAddClick.bind(this)}>
                     <span className="glyphicon glyphicon-plus"></span> Add to my acts
                   </a>
                   : null
                 }
                 <hr />
                 <h3><i className="fa fa-users"></i> {attendingPals.length} Attending Pal(s)</h3>
-                {attendingPals.map(function (pal) { return <Pals
-                                                              key={pal._id}
+                {attendingPals.map(function (pal, i) { return <Pals
+                                                              key={i}
                                                               id={pal._id}
                                                               firstName={pal.first_name}
                                                               lastName={pal.last_name}
@@ -76,8 +101,8 @@ export default class Acts extends Component {
               </div>
               <div className="modal-footer">
                 {alreadyAdded
-                  ? null
-                  : <button type="button" className="btn btn-danger pull-left btn-lg"><i className="fa fa-trash"></i> Remove act</button>
+                  ? <button type="button"  data-dismiss="modal" className="btn btn-danger pull-left btn-lg" onClick={this.handleDeleteClick.bind(this)}><i className="fa fa-trash"></i> Remove act</button>
+                  : null
                 }
                 <button type="button" className="btn btn-default btn-lg" data-dismiss="modal">Close</button>
               </div>
