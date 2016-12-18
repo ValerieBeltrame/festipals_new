@@ -4,9 +4,29 @@ import SampleData from './../sampleData.json';
 import Acts from './Acts.js';
 import Pals from './Pals.js';
 import '../css/ProfilePage.css';
-const currentUser = SampleData.user;
+//const currentUser = SampleData.user;
+import axios from 'axios';
 
 export default class ProfilePage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { data: [] };
+    this.loadProfileFromServer = this.loadProfileFromServer.bind(this);
+    // this.handleActSubmit = this.handleActSubmit.bind(this);
+  }
+  loadProfileFromServer() {
+    axios.get(this.props.route.url)
+    .then(res => {
+      console.log(res.data);
+      this.setState({ data: res.data });
+    })
+  }
+
+  componentDidMount() {
+    this.loadProfileFromServer();
+    setInterval(this.loadActsFromServer, this.props.route.pollInterval);
+  }
+
   render() {
     var attendingPals = ['pal1', 'pal2']; // TO DO: add logic for attending pals here; look through the users pals and select the ones that have this acts {id} in their list of acts.
     const pendingPalRequests = [{ "_id": "def",
@@ -40,9 +60,9 @@ export default class ProfilePage extends Component {
           <div className="row">
             <div className="col-xs-12 col-sm-6">
               <h2>Account information:</h2>
-              <p>First name: {currentUser.first_name}</p>
-              <p>Last name: {currentUser.last_name}</p>
-              <p>E-mail: {currentUser.e_mail}</p>
+              <p>First name: {this.state.data.first_name}</p>
+              <p>Last name: {this.state.data.last_name}</p>
+              <p>E-mail: {this.state.data.e_mail}</p>
             </div>
             <div className="col-xs-12 col-sm-6 profileButtons">
               <button data-toggle="modal" data-target="#changeName" className="btn btn-primary btn-block btn-lg"><i className="fa fa-pencil"></i> Change Name</button>
@@ -133,11 +153,11 @@ export default class ProfilePage extends Component {
                 <p>Make sure to choose your name so that your pals know who you are.</p>
                 <div className="input-group nameInput">
                   <span className="input-group-addon" id="basic-addon3">First Name</span>
-                  <input type="text" className="form-control" id="firstName" defaultValue={currentUser.first_name}/>
+                  <input type="text" className="form-control" id="firstName" defaultValue={this.state.data.first_name}/>
                 </div>
                 <div className="input-group">
                   <span className="input-group-addon" id="basic-addon3">Last Name</span>
-                  <input type="text" className="form-control" id="lastName" defaultValue={currentUser.last_name}/>
+                  <input type="text" className="form-control" id="lastName" defaultValue={this.state.data.last_name}/>
                 </div>
               </div>
               <div className="modal-footer">

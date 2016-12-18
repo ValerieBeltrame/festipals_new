@@ -1,8 +1,9 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var bcrypt = require('bcryptjs');
 
-var palsSchema = new Schema({
-  first_name: { type: 'String', required: true },
+var PalsSchema = new Schema({
+  first_name: { type: 'String', required: true  },
   last_name: { type: 'String', required: true },
   e_mail: { type: 'String', required: true },
   password: { type: 'String', required: true },
@@ -12,4 +13,4 @@ var palsSchema = new Schema({
   pendingPalRequests: { type: Array, default: [] },
 });
 
-module.exports = mongoose.model('Pal', palsSchema);
+module.exports = mongoose.model('Pal', PalsSchema);

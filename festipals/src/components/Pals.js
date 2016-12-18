@@ -21,7 +21,7 @@ export default class Pals extends Component {
 
   render() {
     const { firstName, lastName, email, id} = this.props;
-    
+
     console.log(this.state.collapsed);
     var collapseArrow = "fa fa-chevron-right";
     if(this.state.collapsed) {
