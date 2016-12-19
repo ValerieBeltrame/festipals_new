@@ -24,7 +24,6 @@ export default class Acts extends Component {
   render() {
     const { name, startTime, id, stage, date, endTime, country, description, attendingPals } = this.props;
     var addedActs = [];
-    console.log(this.props.addedActs);
     if(this.props.addedActs) {
       addedActs = this.props.addedActs;
     }

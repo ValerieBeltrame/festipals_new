@@ -2,10 +2,27 @@ import React, { Component } from 'react';
 import '../css/PalsPage.css';
 import Pals from './Pals.js';
 import PageHeader from './PageHeader.js';
-import SamplePals from './../samplePals.json';
+import axios from 'axios';
 
 export default class PalsPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { data: [], loggedInId: '584552f3f36d282dbc878996' };
+    this.loadPalsFromServer = this.loadPalsFromServer.bind(this);
+  }
+  loadPalsFromServer() {
+    axios.get('http://localhost:3001/api/pals/' + this.state.loggedInId + '/details')
+    .then(res => {
+      this.setState({ data: res.data });
+    })
+  }
+
+  componentDidMount() {
+    this.loadPalsFromServer();
+  }
+
   render() {
+    const userPals = this.state.data.pals;
     return (
       <div>
         <PageHeader icon="fa fa-users" title="Pals" description="(More information about your pals)"/>
@@ -16,13 +33,16 @@ export default class PalsPage extends Component {
             </div>
             <div className="col-xs-12">
               {/*} looping through all the pals in the sample data file array to display the pals */}
-              {SamplePals.pals.map(function (pal) { return <Pals
+              {userPals
+                ? userPals.map(function (pal) { return <Pals
                                                               key={pal._id}
                                                               id={pal._id}
                                                               firstName={pal.first_name}
                                                               lastName={pal.last_name}
                                                               email={pal.e_mail}
-                                                            /> }) }
+                                                            /> })
+                : null
+                 }
             </div>
           </div>
         </div>
