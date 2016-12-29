@@ -86,7 +86,7 @@ export default class SchedulePage extends Component {
                                                             addedActs={alreadyAdded}
                                                             attendingPals={attendingPals}
                                                           /> })
-                : <p>You don't have any acts added to your schedule yet.</p>
+                : <p>You don&rsquo;t have any acts added to your schedule yet.</p>
               }
 
             <Link to="acts"><button type="button" className="btn btn-orange btn-lg btn-block buttonAdd"> + Add acts</button></Link>
