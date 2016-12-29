@@ -51,7 +51,7 @@ export default class SchedulePage extends Component {
               <h1><span className="glyphicon glyphicon-music" aria-hidden="true"></span> My schedule</h1>
               <p>(Click on the day to check your time schedule.)</p>
             </div>
-            <div className="col-xs-4">
+            <div className="col-xs-12 col-sm-6">
               <p>
                 <a  data-toggle="modal" className="linkColorRemoveAllActs" href="#removeAll">Remove all acts</a>
               </p>
