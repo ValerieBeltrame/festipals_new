@@ -28,18 +28,18 @@ export default class HomePage extends Component {
                               <h4>Logged in as UserName</h4>
                          </div>
                          <div className="col-xs-12 col-sm-3 col-md-offset-3">
-                               <Link to="acts"><button type="button" className="btn btn-default btn-lg btn-block homePageButton"><i className="fa fa-music"></i> View all acts</button></Link>
+                               <Link to="acts"><button type="button" className="btn btn-orange-light btn-lg btn-block homePageButton"><i className="fa fa-music"></i> View all acts</button></Link>
                          </div>
                          <div className="col-xs-12 col-sm-3">
-                               <Link to="/"><button type="button" className="btn btn-default btn-lg btn-block homePageButton"><i className="fa fa-calendar"></i>  My schedule</button></Link>
+                               <Link to="/"><button type="button" className="btn btn-orange-light btn-lg btn-block homePageButton"><i className="fa fa-calendar"></i>  My schedule</button></Link>
                          </div>
                  </div>
                 :  <div className="row">
                           <div className="col-xs-12 col-sm-3 col-md-offset-3">
-                                <Link to="logIn"><button type="button" className="btn btn-primary btn-lg btn-block homePageButton">Log in</button></Link>
+                                <Link to="logIn"><button type="button" className="btn btn-orange btn-lg btn-block homePageButton">Log in</button></Link>
                           </div>
                           <div className="col-xs-12 col-sm-3">
-                                <Link to="signUp"><button type="button" className="btn btn-primary btn-lg btn-block homePageButton">Sign up</button></Link>
+                                <Link to="signUp"><button type="button" className="btn btn-orange btn-lg btn-block homePageButton">Sign up</button></Link>
                           </div>
                   </div>
               }

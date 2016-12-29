@@ -46,48 +46,52 @@ export default class SchedulePage extends Component {
     return (
       <div>
         <div className="container scheduleHeader">
-            <div className="row">
-                <div className="col-xs-12 col-sm-8">
-                      <h1><span className="glyphicon glyphicon-music" aria-hidden="true"></span> My schedule</h1>
-                      <p>(Click on the day to check your time schedule.)</p>
-                      <a  data-toggle="modal" className="linkColorRemoveAllActs" href="#removeAll"><p>Remove all acts</p></a>
-                          <select onChange={this.changeHandler.bind(this)} id="daySelect" className="form-control">
-                              <optgroup className="optionsLayout">
-                                  <option>Monday, 1 June 2017</option>
-                                  <option>Tuesday, 2 June 2017</option>
-                                  <option>Wednesday, 3 June 2017</option>
-                                  <option>Thursday, 4 June 2017</option>
-                                  <option>Friday, 5 June 2017</option>
-                              </optgroup>
-                          </select>
-                </div>
-             </div>
+          <div className="row">
+            <div className="col-xs-12">
+              <h1><span className="glyphicon glyphicon-music" aria-hidden="true"></span> My schedule</h1>
+              <p>(Click on the day to check your time schedule.)</p>
+            </div>
+            <div className="col-xs-4">
+              <p>
+                <a  data-toggle="modal" className="linkColorRemoveAllActs" href="#removeAll">Remove all acts</a>
+              </p>
+              <select onChange={this.changeHandler.bind(this)} id="daySelect" className="form-control">
+                  <optgroup className="optionsLayout">
+                      <option>Monday, 1 June 2017</option>
+                      <option>Tuesday, 2 June 2017</option>
+                      <option>Wednesday, 3 June 2017</option>
+                      <option>Thursday, 4 June 2017</option>
+                      <option>Friday, 5 June 2017</option>
+                  </optgroup>
+              </select>
+            </div>
+          </div>
         </div>
 
         <div className="container">
-            <div className="row">
-                    <div className="col-xs-12 col-sm-8">
-        {/* looping through all the acts in the sample data file array to display the acts */}
-          {userActs
-            ? userActs.map(function (act) { return <Acts
-                                                        key={act._id}
-                                                        id={act._id}
-                                                        stage={act.stage}
-                                                        name={act.title}
-                                                        country={act.country}
-                                                        description={act.description}
-                                                        startTime={act.starts.time}
-                                                        endTime={act.ends.time}
-                                                        date={act.starts.date}
-                                                        addedActs={alreadyAdded}
-                                                        attendingPals={attendingPals}
-                                                      /> })
-            : <p>You don't have any acts added to your schedule yet.</p>
-          }
+          <div className="row">
+            <div className="col-xs-12">
+              {/* looping through all the acts in the sample data file array to display the acts */}
+              {userActs
+                ? userActs.map(function (act) { return <Acts
+                                                            key={act._id}
+                                                            id={act._id}
+                                                            stage={act.stage}
+                                                            name={act.title}
+                                                            country={act.country}
+                                                            description={act.description}
+                                                            startTime={act.starts.time}
+                                                            endTime={act.ends.time}
+                                                            date={act.starts.date}
+                                                            addedActs={alreadyAdded}
+                                                            attendingPals={attendingPals}
+                                                          /> })
+                : <p>You don't have any acts added to your schedule yet.</p>
+              }
 
-                   <Link to="acts"><button type="button" className="btn btn-primary btn-lg btn-block buttonAdd"> + Add acts</button></Link>
-                    </div>
-            </div>
+            <Link to="acts"><button type="button" className="btn btn-orange btn-lg btn-block buttonAdd"> + Add acts</button></Link>
+          </div>
+        </div>
 
             <div className="row">
                 <div className="col-xs-12 col-sm-8">
@@ -110,7 +114,7 @@ export default class SchedulePage extends Component {
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-danger"><i className="fa fa-trash"></i> Delete </button>
-                <button type="button" className="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" className="btn btn-orange-light" data-dismiss="modal">Cancel</button>
               </div>
             </div>
           </div>

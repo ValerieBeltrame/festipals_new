@@ -30,7 +30,7 @@ export default class LogInPage extends Component {
                       <label for="inputPasswordLogIn">Password</label>
                       <input type="password" className="form-control" id="inputPasswordLogIn" placeholder="****"></input>
                     </div>
-                    <Link to="acts"><button type="button" className="btn btn-primary btn-lg btn-block"> Log In</button></Link>
+                    <Link to="acts"><button type="button" className="btn btn-orange btn-lg btn-block"> Log In</button></Link>
                 </form>
               </div>
             </div>

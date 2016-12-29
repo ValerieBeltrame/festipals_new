@@ -15,9 +15,8 @@ export default class ActsSorter extends Component {
     this.setState({selectedOrder:newSelectedOrder});
   }
 
-  changeHandlerFilter(event) {
-      var newSelectedFilter = event.target.getElementsByTagName('h3')[0].innerHTML;
-      this.setState({selectedFilter:newSelectedFilter});
+  changeHandlerFilter(name) {
+    this.setState({selectedFilter: name});
   }
 
   collapseDaysButtons(event) {
@@ -56,7 +55,7 @@ export default class ActsSorter extends Component {
             </button>
           </div>
           <div className="btn-group">
-            <button type="button" className="btn btn-default" data-toggle="collapse"
+            <button type="button" className="btn btn-default sorterButtons" data-toggle="collapse"
             href="#actsSorterButtons" aria-expanded="false" aria-controls="actsSorterButtons" onClick={this.collapseSortButtons.bind(this)}>
               <span className="fa fa-clone fa-rotate-270 fa-3x" aria-hidden="true"></span>
               <h3>Filter by</h3>
@@ -79,44 +78,48 @@ export default class ActsSorter extends Component {
                     <option>Saturday 06/02/2017</option>
                     <option>Sunday 07/02/2017</option>
               </select>
-              <h4>
-              <a type="button" href="#" className="btn btn-warning" onClick={this.collapseAll.bind(this)} id="filterSelect">
-                  <h4>Reset all filters</h4>
-              </a></h4>
             </div>
           </div>
         </div>
 
         <div className={this.state.sortButtonsCollapsed} id="actsSorterButtons">
-          <div className="card card-block">
-            <div className="btn-group input-group btn-group-justified col-xs-12">
-              <div className="btn-group">
-                <button type="button" className="btn btn-default" onClick={this.changeHandlerFilter.bind(this)} id="filterSelect">
-                  <span className="fa fa-globe fa-3x" aria-hidden="true"></span>
-                  <h3 className="hidden-xs">Country</h3>
-                </button>
-              </div>
-              <div className="btn-group">
-                <button type="button" className="btn btn-default" onClick={this.changeHandlerFilter.bind(this)} id="filterSelect">
-                  <span className="fa fa-home fa-3x" aria-hidden="true"></span>
-                  <h3 className="hidden-xs">Stage</h3>
-                </button>
-              </div>
-              <div className="btn-group">
-                <button type="button" className="btn btn-default" onClick={this.changeHandlerFilter.bind(this)} id="filterSelect">
-                  <span className="fa fa-sort-alpha-asc  fa-3x" aria-hidden="true"></span>
-                  <h3 className="hidden-xs">Ascending</h3>
-                </button>
-              </div>
-              <div className="btn-group">
-                <button type="button" className="btn btn-default" onClick={this.changeHandlerFilter.bind(this)} id="filterSelect">
-                  <span className="fa fa-sort-alpha-desc  fa-3x" aria-hidden="true"></span>
-                  <h3 className="hidden-xs">Descending</h3>
-                </button>
-              </div>
+          <div className="btn-group btn-group-justified" role="group" aria-label="...">
+            <div className="btn-group" role="group">
+              <button type="button" className="btn btn-default" onClick={this.changeHandlerFilter.bind(this, 'Country')}>
+                <span className="fa fa-globe fa-3x" aria-hidden="true"></span>
+                <h3 className="hidden-xs">Country</h3>
+              </button>
+            </div>
+            <div className="btn-group" role="group">
+              <button type="button" className="btn btn-default" onClick={this.changeHandlerFilter.bind(this, 'Stage')}>
+                <span className="fa fa-home fa-3x" aria-hidden="true"></span>
+                <h3 className="hidden-xs">Stage</h3>
+              </button>
+            </div>
+            <div className="btn-group" role="group">
+              <button type="button" className="btn btn-default" onClick={this.changeHandlerFilter.bind(this, 'Ascending')}>
+                <span className="fa fa-sort-alpha-asc  fa-3x" aria-hidden="true"></span>
+                <h3 className="hidden-xs">Ascending</h3>
+              </button>
+            </div>
+            <div className="btn-group" role="group">
+              <button type="button" className="btn btn-default" onClick={this.changeHandlerFilter.bind(this, 'Descending')}>
+                <span className="fa fa-sort-alpha-desc  fa-3x" aria-hidden="true"></span>
+                <h3 className="hidden-xs">Descending</h3>
+              </button>
             </div>
           </div>
         </div>
+
+        {this.state.sortButtonsCollapsed === 'collapse in' || this.state.daysButtonsCollapsed === 'collapse in'
+          ? <h4>
+            <a type="button" href="#" className="btn btn-danger" onClick={this.collapseAll.bind(this)} id="filterSelect">
+              Reset all filters
+            </a>
+          </h4>
+          : null
+        }
+
       </div>
       </div>
     );

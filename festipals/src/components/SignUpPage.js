@@ -46,7 +46,7 @@ export default class SignUpPage extends Component {
                                          <label for="checkboxRobot">I am not a Robot</label>
                                          <input type="checkbox" className="form-control" id="checkboxRobot"></input>
                                        </div>
-                                    <Link to="acts"><button type="button" className="btn btn-primary btn-lg btn-block"> Sign Up</button></Link>
+                                    <Link to="acts"><button type="button" className="btn btn-orange btn-lg btn-block"> Sign Up</button></Link>
                               </form>
                           </div>
                     </div>

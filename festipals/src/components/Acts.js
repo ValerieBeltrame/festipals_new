@@ -31,8 +31,8 @@ export default class Acts extends Component {
 
     return (
       <div>
-        <div className="row">
-          <a data-toggle="modal" href={'#'+ id} className="panel panel-default col-xs-12 actPanel">
+        <a data-toggle="modal" href={'#'+ id}>
+          <div className="panel panel-default actPanel">
             <div className="panel-body">
               <div className="col-xs-3 startingTime">
                 {date} <br /> <strong>{startTime}</strong>
@@ -47,17 +47,17 @@ export default class Acts extends Component {
                 </div>
               </div>
             </div>
-          </a>
-          <div className="col-xs-12 addActBtn">
-            {alreadyAdded
-              ? null
-              : (this.props.actRequest
-                ? null
-                : <a type="button" className="btn btn-success col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6 btn-lg" onClick={this.handleAddClick.bind(this)}>
-                <i className="fa fa-plus"></i> Add to my acts
-              </a>)
-            }
           </div>
+        </a>
+        <div className="addActBtn">
+          {alreadyAdded
+            ? null
+            : (this.props.actRequest
+              ? null
+              : <a type="button" className="btn btn-orange btn-block btn-lg" onClick={this.handleAddClick.bind(this)}>
+              <i className="fa fa-plus"></i> Add to my acts
+            </a>)
+          }
         </div>
 
         <div className="modal fade" id={id} tabIndex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -74,7 +74,7 @@ export default class Acts extends Component {
                 <br />
                 <p>{description}</p>
                 {alreadyAdded
-                  ? <a type="button" className="btn btn-default col-xs-12 alreadyAddedBtn" onClick={this.handleAddClick.bind(this)}>
+                  ? <a type="button" className="btn btn-orange-light col-xs-12 alreadyAddedBtn" onClick={this.handleAddClick.bind(this)}>
                     <span className="glyphicon glyphicon-plus"></span> Add to my acts
                   </a>
                   : null
@@ -93,7 +93,7 @@ export default class Acts extends Component {
                 <div className="input-group col-xs-12 col-sm-6">
                   <input type="text" className="form-control" placeholder="Search for a pal..." />
                   <span className="input-group-btn">
-                    <button className="btn btn-default" type="button">Search!</button>
+                    <button className="btn btn-orange-light" type="button">Search!</button>
                   </span>
                 </div>
 
@@ -103,7 +103,7 @@ export default class Acts extends Component {
                   ? <button type="button"  data-dismiss="modal" className="btn btn-danger pull-left btn-lg" onClick={this.handleDeleteClick.bind(this)}><i className="fa fa-trash"></i> Remove act</button>
                   : null
                 }
-                <button type="button" className="btn btn-default btn-lg" data-dismiss="modal">Close</button>
+                <button type="button" className="btn btn-orange-light btn-lg" data-dismiss="modal">Close</button>
               </div>
             </div>
           </div>
