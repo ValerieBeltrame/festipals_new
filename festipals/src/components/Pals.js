@@ -23,7 +23,7 @@ export default class Pals extends Component {
   render() {
 
     const { firstName, lastName, email, id, acts, userActs } = this.props;
-    var cActs = new Array();
+    var cActs = [];
 
     // check if id exists in userActs and if it exists
     // add it to a new array
