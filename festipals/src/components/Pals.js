@@ -41,7 +41,7 @@ export default class Pals extends Component {
 
           cActs.push({
             '_id': _id ,
-            'name': title,
+            'title': title,
             'stage': stage,
             'starts': date
           });
@@ -72,7 +72,7 @@ export default class Pals extends Component {
                 <h5><i className={collapseArrow}></i>{cActs.length} common acts</h5>
               </a>
               <div className="collapse" id={id}>
-                {cActs.map(function (commonAct) { return <PalsActs key={commonAct._id} name={commonAct.name} stage={commonAct.stage} date={commonAct.starts} /> })}
+                {cActs.map(function (commonAct) { return <PalsActs key={commonAct._id} title={commonAct.title} stage={commonAct.stage} date={commonAct.starts} /> })}
               </div>
             </div>
           </div>
