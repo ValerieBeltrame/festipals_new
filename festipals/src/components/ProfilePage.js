@@ -65,10 +65,10 @@ export default class ProfilePage extends Component {
               <p>E-mail: {this.state.data.e_mail}</p>
             </div>
             <div className="col-xs-12 col-sm-6 profileButtons">
-              <button data-toggle="modal" data-target="#changeName" className="btn btn-primary btn-block btn-lg"><i className="fa fa-pencil"></i> Change Name</button>
+              <button data-toggle="modal" data-target="#changeName" className="btn btn-orange btn-block btn-lg"><i className="fa fa-pencil"></i> Change Name</button>
             </div>
             <div className="col-xs-12 col-sm-6 profileButtons">
-              <button data-toggle="modal" data-target="#changePassword" className="btn btn-primary btn-block btn-lg"><i className="fa fa-pencil"></i> Change Password</button>
+              <button data-toggle="modal" data-target="#changePassword" className="btn btn-orange btn-block btn-lg"><i className="fa fa-pencil"></i> Change Password</button>
             </div>
             <div className="col-xs-12 col-sm-6 profileButtons">
               <button data-toggle="modal" data-target="#deleteAccount" className="btn btn-danger btn-block btn-lg"><i className="fa fa-trash"></i> Delete account </button>
@@ -83,20 +83,22 @@ export default class ProfilePage extends Component {
               <h3><i className="fa fa-users"></i> Pal requests</h3>
               {pendingPalRequests.length === 0
               ? <p>You have no pending pal requests.</p>
-            : pendingPalRequests.map(function (pal) { return <div className="inviteDiv col-xs-12 col-md-8"><h5><strong>Palname wants to connect:</strong></h5><Pals
+            : pendingPalRequests.map(function (pal) { return <div className="inviteDiv col-xs-12 col-md-8"><h5><strong>Palname wants to connect:</strong></h5>
+                                                                <Pals
                                                                   key={pal._id}
                                                                   id={pal._id}
                                                                   firstName={pal.first_name}
                                                                   lastName={pal.last_name}
                                                                   email={pal.e_mail}
                                                                 />
-                                                              <div className="col-xs-12 col-md-8 inviteButtons">
+                                                                <div className="palInviteDivider"></div>
+                                                                <div className="col-xs-12 col-md-8 inviteButtons">
                                                                   <div className="btn-group btn-group-justified" role="group">
                                                                     <div className="btn-group" role="group">
                                                                       <button type="button" className="btn btn-danger btn-lg declineButton"><i className="fa fa-ban"></i> Decline</button>
                                                                     </div>
                                                                     <div className="btn-group" role="group">
-                                                                      <button type="button" className="btn btn-success btn-lg acceptButton"><i className="fa fa-user-plus"></i> Add to my pals</button>
+                                                                      <button type="button" className="btn btn-orange btn-lg acceptButton"><i className="fa fa-user-plus"></i> Add to my pals</button>
                                                                     </div>
                                                                   </div>
                                                                 </div>
@@ -130,7 +132,7 @@ export default class ProfilePage extends Component {
                                                                       <button type="button" className="btn btn-danger btn-lg declineButton"><i className="fa fa-ban"></i> Decline</button>
                                                                     </div>
                                                                     <div className="btn-group" role="group">
-                                                                      <button type="button" className="btn btn-success btn-lg acceptButton"><i className="fa fa-plus"></i> Add to my acts</button>
+                                                                      <button type="button" className="btn btn-orange btn-lg acceptButton"><i className="fa fa-plus"></i> Add to my acts</button>
                                                                     </div>
                                                                   </div>
                                                                 </div>
@@ -162,8 +164,8 @@ export default class ProfilePage extends Component {
                 </div>
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-success"><i className="fa fa-pencil"></i> Save changes</button>
-                <button type="button" className="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" className="btn btn-orange"><i className="fa fa-pencil"></i> Save changes</button>
+                <button type="button" className="btn btn-orange-light" data-dismiss="modal">Cancel</button>
               </div>
             </div>
           </div>
@@ -184,8 +186,8 @@ export default class ProfilePage extends Component {
                 <input type="password" className="form-control" id="newPassword2"/>
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-success"><i className="fa fa-pencil"></i> Save changes</button>
-                <button type="button" className="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" className="btn btn-orange"><i className="fa fa-pencil"></i> Save changes</button>
+                <button type="button" className="btn btn-orange-light" data-dismiss="modal">Cancel</button>
               </div>
             </div>
           </div>
@@ -204,7 +206,7 @@ export default class ProfilePage extends Component {
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-danger"><i className="fa fa-trash"></i> Delete </button>
-                <button type="button" className="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" className="btn btn-orange-light" data-dismiss="modal">Cancel</button>
               </div>
             </div>
           </div>

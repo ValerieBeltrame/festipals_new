@@ -32,3 +32,95 @@ h1 {
 a.active, a.active:active, a.active:hover, a.active:focus {
   background-color: black !important;
 }
+
+.btn-orange {
+  color: #FFFFFF;
+  background-color: #EB9646;
+  border-color: #B35700;
+}
+
+.btn-orange:hover,
+.btn-orange:focus,
+.btn-orange:active,
+.btn-orange.active,
+.open .dropdown-toggle.btn-orange {
+  color: #FFFFFF;
+  background-color: #C2742B;
+  border-color: #B35700;
+}
+
+.btn-orange:active,
+.btn-orange.active,
+.open .dropdown-toggle.btn-orange {
+  background-image: none;
+}
+
+.btn-orange.disabled,
+.btn-orange[disabled],
+fieldset[disabled] .btn-orange,
+.btn-orange.disabled:hover,
+.btn-orange[disabled]:hover,
+fieldset[disabled] .btn-orange:hover,
+.btn-orange.disabled:focus,
+.btn-orange[disabled]:focus,
+fieldset[disabled] .btn-orange:focus,
+.btn-orange.disabled:active,
+.btn-orange[disabled]:active,
+fieldset[disabled] .btn-orange:active,
+.btn-orange.disabled.active,
+.btn-orange[disabled].active,
+fieldset[disabled] .btn-orange.active {
+  background-color: #EB9646;
+  border-color: #B35700;
+}
+
+.btn-orange .badge {
+  color: #EB9646;
+  background-color: #FFFFFF;
+}
+
+.btn-orange-light {
+  color: #E8872C;
+  background-color: #FFFFFF;
+  border-color: #B35700;
+}
+
+.btn-orange-light:hover,
+.btn-orange-light:focus,
+.btn-orange-light:active,
+.btn-orange-light.active,
+.open .dropdown-toggle.btn-orange-light {
+  color: #E8872C;
+  background-color: #F2F2F2;
+  border-color: #B35700;
+}
+
+.btn-orange-light:active,
+.btn-orange-light.active,
+.open .dropdown-toggle.btn-orange-light {
+  background-image: none;
+}
+
+.btn-orange-light.disabled,
+.btn-orange-light[disabled],
+fieldset[disabled] .btn-orange-light,
+.btn-orange-light.disabled:hover,
+.btn-orange-light[disabled]:hover,
+fieldset[disabled] .btn-orange-light:hover,
+.btn-orange-light.disabled:focus,
+.btn-orange-light[disabled]:focus,
+fieldset[disabled] .btn-orange-light:focus,
+.btn-orange-light.disabled:active,
+.btn-orange-light[disabled]:active,
+fieldset[disabled] .btn-orange-light:active,
+.btn-orange-light.disabled.active,
+.btn-orange-light[disabled].active,
+fieldset[disabled] .btn-orange-light.active {
+  background-color: #FFFFFF;
+  border-color: #B35700;
+}
+
+.btn-orange-light .badge {
+  color: #FFFFFF;
+  background-color: #E8872C;
+}

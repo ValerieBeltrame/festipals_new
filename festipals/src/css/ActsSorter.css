@@ -1,5 +1,5 @@
 .sorterButtons {
-  border-color:#ffffff;
+  border: none;
 }
 
 p.filterCurrentOption {
@@ -7,5 +7,5 @@ p.filterCurrentOption {
 }
 
 .sorterContainer {
-  padding-bottom: 5px;
+  padding-bottom: 30px;
 }
