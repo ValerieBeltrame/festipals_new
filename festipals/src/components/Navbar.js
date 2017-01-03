@@ -23,8 +23,10 @@ export default class Navbar extends Component {
                 <li><Link to="pals" activeClassName="active"><i className="fa fa-users"></i>Pals</Link></li>
                 <li><Link to="acts" activeClassName="active"><i className="fa fa-music"></i>Acts</Link></li>
                 <li className="divider" activeClassName="active"></li>
-                <li><Link to="profile" activeClassName="active"><i className="fa fa-user"></i>Profile</Link></li>
-                <li><Link to="home"><i className="fa fa-sign-out"></i>Log Out</Link></li>
+              </ul>
+              <ul className="nav navbar-nav navbar-right">
+                <li><Link to="profile" activeClassName="active"><i className="fa fa-user"></i><span className="visible-xs leftNav">Profile</span></Link></li>
+                <li><Link to="requests" activeClassName="active"><i className="fa fa-bell-o"></i><span className="visible-xs leftNav">Requests</span></Link></li>
               </ul>
             </div>
             : null

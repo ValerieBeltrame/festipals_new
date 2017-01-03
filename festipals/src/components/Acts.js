@@ -41,10 +41,12 @@ export default class Acts extends Component {
                 <h3>{name}</h3>
                 <p>Stage {stage}</p>
               </div>
-              <div className="col-xs-3 palIcon">
-                <div className="pull-right">
-                  <i className="fa fa-users"></i> {attendingPals.length}
-                </div>
+              <div className="col-xs-3 palIcon text-right">
+                <p>{alreadyAdded
+                    ? <i className="fa fa-check text-success"></i>
+                    : null
+                  }</p>
+                <p><i className="fa fa-users"></i> {attendingPals.length}</p>
               </div>
             </div>
           </div>
