@@ -29,7 +29,6 @@ export default class Pals extends Component {
       for(var j = 0; j < acts.length; j++) {
 
         if(userActs[i]._id === acts[j]) {
-          //console.log('MATCH!');
           var _id = userActs[i]._id;
           var title = userActs[i].title;
           var stage = userActs[i].stage;
