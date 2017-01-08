@@ -8,9 +8,10 @@ export default class SchedulePage extends Component {
     constructor() {
         super();
         var defaultDay = 'Monday, 1 June 2017';
-        this.state = {selectedDay: defaultDay, data: [], loggedInId: '584552f3f36d282dbc878996', data2: [] };
+        this.state = {selectedDay: defaultDay, data: [], loggedInId: '584552f3f36d282dbc878996', data2: [], data3: [] };
         this.loadProfileFromServer = this.loadProfileFromServer.bind(this);
         this.loadPalsActsFromServer = this.loadPalsActsFromServer.bind(this);
+        this.loadPalsFromServer = this.loadPalsFromServer.bind(this);
     }
 
     changeHandler(event) {
@@ -31,17 +32,29 @@ export default class SchedulePage extends Component {
         this.setState({ data2: res.data });
       })
     }
+    loadPalsFromServer() {
+    axios.get('http://localhost:3001/api/pals/' + this.state.loggedInId + '/details')
+    .then(res => {
+      this.setState({ data3: res.data });
+    })
+  }
 
     componentDidMount() {
       this.loadProfileFromServer();
-      setInterval(this.loadActsFromServer, this.props.route.pollInterval);
       this.loadPalsActsFromServer();
-      setInterval(this.loadPalsActsFromServer, this.props.route.pollInterval);
+      this.loadPalsFromServer();
+    }
+
+    handleReload() {
+      this.loadProfileFromServer();
+      this.loadPalsActsFromServer();
+      this.loadPalsFromServer();
     }
 
   render() {
-    const userActs = this.state.data.acts;
-    var attendingPals = ['pal1', 'pal2']; // TO DO: add logic for attending pals here; look through the users pals and select the ones that have this acts {id} in their list of acts.
+    var self = this;
+    const userActs = this.state.data3.acts;
+    const userPals = this.state.data3.pals;
     const alreadyAdded = this.state.data2.acts;
     return (
       <div>
@@ -84,12 +97,14 @@ export default class SchedulePage extends Component {
                                                             endTime={act.ends.time}
                                                             date={act.starts.date}
                                                             addedActs={alreadyAdded}
-                                                            attendingPals={attendingPals}
+                                                            userPals={userPals}
+                                                            handleReload={self.handleReload.bind(self)}
+                                                            userActs={userActs}
                                                           /> })
                 : <p>You don&rsquo;t have any acts added to your schedule yet.</p>
               }
 
-            <Link to="acts"><button type="button" className="btn btn-orange btn-lg btn-block buttonAdd"> + Add acts</button></Link>
+            <Link to="acts"><button type="button" className="btn btn-orange-light btn-lg btn-block buttonAdd"> + Add more acts</button></Link>
           </div>
         </div>
 
