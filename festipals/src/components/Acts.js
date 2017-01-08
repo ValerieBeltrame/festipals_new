@@ -24,12 +24,29 @@ export default class Acts extends Component {
   }
 
   render() {
-    const { name, startTime, id, stage, date, endTime, country, description, attendingPals } = this.props;
+    const { name, startTime, id, stage, date, endTime, country, description, userPals, userActs } = this.props;
     var addedActs = [];
     if(this.props.addedActs) {
       addedActs = this.props.addedActs;
     }
     var alreadyAdded = addedActs.indexOf(id) > -1;
+    const attendingPals = [];
+    if(userPals) {
+      for(var i = 0; i < userPals.length; i++) {
+        for(var j = 0; j < userPals[i].acts.length; j++) {
+          if(userPals[i].acts[j] === id) {
+            attendingPals.push({
+              '_id': userPals[i]._id,
+              'first_name': userPals[i].first_name,
+              'last_name': userPals[i].last_name,
+              'e_mail': userPals[i].e_mail,
+              'userActs': userActs,
+              'acts': userPals[i].acts
+            });
+          }
+        }
+      }
+    }
 
     return (
       <div>
@@ -91,6 +108,8 @@ export default class Acts extends Component {
                                                               firstName={pal.first_name}
                                                               lastName={pal.last_name}
                                                               email={pal.e_mail}
+                                                              userActs={pal.userActs}
+                                                              acts={pal.acts}
                                                             /> })
                 }
                 <h4>Invite Pals</h4>

@@ -7,9 +7,10 @@ import axios from 'axios';
 export default class ActsPage extends Component {
   constructor(props) {
     super(props);
-    this.state = { data: [], loggedInId: '584552f3f36d282dbc878996', data2: [] };
+    this.state = { data: [], loggedInId: '584552f3f36d282dbc878996', data2: [], data3: [] };
     this.loadActsFromServer = this.loadActsFromServer.bind(this);
     this.loadPalsActsFromServer = this.loadPalsActsFromServer.bind(this);
+    this.loadPalsFromServer = this.loadPalsFromServer.bind(this);
   }
   loadActsFromServer() {
     axios.get(this.props.route.url)
@@ -23,21 +24,31 @@ export default class ActsPage extends Component {
       this.setState({ data2: res.data });
     })
   }
+  loadPalsFromServer() {
+    axios.get('http://localhost:3001/api/pals/' + this.state.loggedInId + '/details')
+    .then(res => {
+      this.setState({ data3: res.data });
+    })
+  }
 
   componentDidMount() {
     this.loadActsFromServer();
     this.loadPalsActsFromServer();
+    this.loadPalsFromServer();
   }
 
   handleReload() {
     this.loadActsFromServer();
     this.loadPalsActsFromServer();
+    this.loadPalsFromServer();
   }
-  
+
   render() {
     var self = this;
-    var attendingPals = ['pal1', 'pal2']; // TO DO: add logic for attending pals here; look through the users pals and select the ones that have this acts {id} in their list of acts.
+    const userPals = this.state.data3.pals;
     const alreadyAdded = this.state.data2.acts;
+    const userActs = this.state.data3.acts;
+
     return (
       <div>
         <PageHeader icon="fa fa-music" title="Acts" description="(Click on an act to see more details)"/>
@@ -55,8 +66,9 @@ export default class ActsPage extends Component {
                                                       endTime={act.ends.time}
                                                       date={act.starts.date}
                                                       addedActs={alreadyAdded}
-                                                      attendingPals={attendingPals}
+                                                      userPals={userPals}
                                                       handleReload={self.handleReload.bind(self)}
+                                                      userActs={userActs}
                                                     /> }) }
         </div>
       </div>
