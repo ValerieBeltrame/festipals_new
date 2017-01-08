@@ -9,7 +9,6 @@ export default class ProfilePage extends Component {
     super(props);
     this.state = { data: [] };
     this.loadProfileFromServer = this.loadProfileFromServer.bind(this);
-    // this.handleActSubmit = this.handleActSubmit.bind(this);
   }
   loadProfileFromServer() {
     axios.get(this.props.route.url)
@@ -20,7 +19,6 @@ export default class ProfilePage extends Component {
 
   componentDidMount() {
     this.loadProfileFromServer();
-    setInterval(this.loadActsFromServer, this.props.route.pollInterval);
   }
 
   render() {

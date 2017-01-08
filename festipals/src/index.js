@@ -36,12 +36,12 @@ ReactDOM.render(
   <Router history={browserHistory}>
 
     <Route path='/' component={Layout} loggedIn={loggedIn()}>
-      <IndexRoute component={SchedulePage} onEnter={requireAuth} url='http://localhost:3001/api/pals/584552f3f36d282dbc878996/details' pollInterval={4000}></IndexRoute>
-      <Route path="acts" component={ActsPage} onEnter={requireAuth} url='http://localhost:3001/api/acts' pollInterval={4000}></Route>
+      <IndexRoute component={SchedulePage} onEnter={requireAuth} url='http://localhost:3001/api/pals/584552f3f36d282dbc878996/details'></IndexRoute>
+      <Route path="acts" component={ActsPage} onEnter={requireAuth} url='http://localhost:3001/api/acts'></Route>
       <Route path="home" component={HomePage} loggedIn={loggedIn()}></Route>
-      <Route path="pals" component={PalsPage} onEnter={requireAuth} url='http://localhost:3001/api/pals' pollInterval={4000}></Route>
-      <Route path="profile" component={ProfilePage} onEnter={requireAuth}  url='http://localhost:3001/api/pals/584552f3f36d282dbc878996/details' pollInterval={4000}></Route>
-      <Route path="requests" component={RequestPage} onEnter={requireAuth}  url='http://localhost:3001/api/pals/584552f3f36d282dbc878996/details' pollInterval={4000}></Route>
+      <Route path="pals" component={PalsPage} onEnter={requireAuth} url='http://localhost:3001/api/pals'></Route>
+      <Route path="profile" component={ProfilePage} onEnter={requireAuth}  url='http://localhost:3001/api/pals/584552f3f36d282dbc878996/details'></Route>
+      <Route path="requests" component={RequestPage} onEnter={requireAuth}  url='http://localhost:3001/api/pals/584552f3f36d282dbc878996/details'></Route>
       <Route path="signUp" component={SignUpPage}></Route>
       <Route path="logIn" component={LogInPage}></Route>
     </Route>

@@ -34,12 +34,16 @@ export default class SchedulePage extends Component {
 
     componentDidMount() {
       this.loadProfileFromServer();
-      setInterval(this.loadActsFromServer, this.props.route.pollInterval);
       this.loadPalsActsFromServer();
-      setInterval(this.loadPalsActsFromServer, this.props.route.pollInterval);
+    }
+
+    handleReload() {
+      this.loadProfileFromServer();
+      this.loadPalsActsFromServer();
     }
 
   render() {
+    var self = this;
     const userActs = this.state.data.acts;
     var attendingPals = ['pal1', 'pal2']; // TO DO: add logic for attending pals here; look through the users pals and select the ones that have this acts {id} in their list of acts.
     const alreadyAdded = this.state.data2.acts;
@@ -85,11 +89,12 @@ export default class SchedulePage extends Component {
                                                             date={act.starts.date}
                                                             addedActs={alreadyAdded}
                                                             attendingPals={attendingPals}
+                                                            handleReload={self.handleReload.bind(self)}
                                                           /> })
                 : <p>You don&rsquo;t have any acts added to your schedule yet.</p>
               }
 
-            <Link to="acts"><button type="button" className="btn btn-orange btn-lg btn-block buttonAdd"> + Add acts</button></Link>
+            <Link to="acts"><button type="button" className="btn btn-orange-light btn-lg btn-block buttonAdd"> + Add more acts</button></Link>
           </div>
         </div>
 

@@ -12,12 +12,14 @@ export default class Acts extends Component {
   handleDeleteClick(event) {
     axios.put('http://localhost:3001/api/pals/' + this.state.loggedInId + '/acts/' + this.props.id + '/delete')
     .then(res => {
+      this.props.handleReload();
     })
   }
 
   handleAddClick(event) {
     axios.put('http://localhost:3001/api/pals/' + this.state.loggedInId + '/acts/' + this.props.id + '/add')
     .then(res => {
+      this.props.handleReload();
     })
   }
 
@@ -76,10 +78,10 @@ export default class Acts extends Component {
                 <br />
                 <p>{description}</p>
                 {alreadyAdded
-                  ? <a type="button" className="btn btn-orange-light col-xs-12 alreadyAddedBtn" onClick={this.handleAddClick.bind(this)}>
+                  ? null
+                  : <a type="button" className="btn btn-orange-light col-xs-12 alreadyAddedBtn" onClick={this.handleAddClick.bind(this)}>
                     <span className="glyphicon glyphicon-plus"></span> Add to my acts
                   </a>
-                  : null
                 }
                 <hr />
                 <h3><i className="fa fa-users"></i> {attendingPals.length} Attending Pal(s)</h3>

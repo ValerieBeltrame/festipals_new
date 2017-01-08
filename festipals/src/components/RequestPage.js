@@ -21,7 +21,6 @@ export default class RequestPage extends Component {
 
   componentDidMount() {
     this.loadProfileFromServer();
-    setInterval(this.loadActsFromServer, this.props.route.pollInterval);
   }
 
   render() {
