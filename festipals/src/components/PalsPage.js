@@ -4,6 +4,7 @@ import Pals from './Pals.js';
 import PageHeader from './PageHeader.js';
 import axios from 'axios';
 
+
 export default class PalsPage extends Component {
   constructor(props) {
     super(props);
@@ -22,7 +23,10 @@ export default class PalsPage extends Component {
   }
 
   render() {
+
     const userPals = this.state.data.pals;
+    const userActs = this.state.data.acts;
+
     return (
       <div>
         <PageHeader icon="fa fa-users" title="Pals" description="(More information about your pals)"/>
@@ -40,6 +44,8 @@ export default class PalsPage extends Component {
                                                               firstName={pal.first_name}
                                                               lastName={pal.last_name}
                                                               email={pal.e_mail}
+                                                              acts={pal.acts}
+                                                              userActs={userActs}
                                                             /> })
                 : null
                  }
